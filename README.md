@@ -1,0 +1,2 @@
+# mailing
+Laravel Mailing App
