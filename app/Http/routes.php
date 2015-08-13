@@ -17,5 +17,5 @@ Route::get('/', [
     'uses' => 'HomeController@index'
 ]);
 
-Route::post('send', ['as' => 'send', 'uses' => 'MailController@send'] );
+Route::post('send', ['as' => 'send', 'uses' => 'MailController@navidad'] );
 Route::get('contact', ['as' => 'contact', 'uses' => 'MailController@index'] );

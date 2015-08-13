@@ -24,13 +24,13 @@ class MailController extends Controller {
      * @param Request $request
      * @return \Illuminate\View\View
      */
-    public function sendNavidad( Request $request )
+    public function navidad( Request $request )
     {
         $subject = "La mejor opción para sus Regalos de Navidad";
         $campaign = "fru92";
         Mail::queue( 'emails.navidad', [], function ( $message ) use ( $subject, $campaign ) {
             $message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', $campaign);
-            $message->from( $data['email'] )
+            $message->from( "sodexomail@dayscript.com", "Sodexo" )
                 ->subject( $subject )
                 ->to( env('CONTACT_MAIL'), env('CONTACT_NAME') );
         } );
