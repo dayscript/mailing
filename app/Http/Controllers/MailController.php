@@ -24,22 +24,32 @@ class MailController extends Controller {
      * @param Request $request
      * @return \Illuminate\View\View
      */
-    public function send( Request $request )
+    public function sendNavidad( Request $request )
     {
-        //guarda el valor de los campos enviados desde el form en un array
-        $data = $request->all();
-        //se envia el array y la vista lo recibe en llaves individuales {{ $email }} , {{ $subject }}...
-        Mail::send( 'emails.message', $data, function ( $message ) use ( $request )
-        {
-            //remitente
-            $message->from( $request->email, $request->name );
-            //asunto
-            $message->subject( $request->subject );
-            //receptor
-            $message->to( env( 'CONTACT_MAIL' ), env( 'CONTACT_NAME' ) );
-            $message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', 'fru92');
+        $subject = "La mejor opción para sus Regalos de Navidad";
+        $campaign = "fru92";
+        Mail::queue( 'emails.navidad', [], function ( $message ) use ( $subject, $campaign ) {
+            $message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', $campaign);
+            $message->from( $data['email'] )
+                ->subject( $subject )
+                ->to( env('CONTACT_MAIL'), env('CONTACT_NAME') );
         } );
 
+    }
+
+    public function send( Request $request )
+    {
+        $data = $request->all();
+        Mail::queue( 'emails.navidad', $data, function ( $message ) use ( $data ) {
+            $message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', 'fru92');
+            $message->from( $data['email'] )
+                ->subject( $data['subject'] )
+                ->to( env('CONTACT_MAIL'), env('CONTACT_NAME') );
+        } );
+
+        //Mail::queue('emails.newmessage', ['user' => $user,'notification'=>$not,'model'=>$model], function ($m) use ($user) {
+        //    $m->to($user->email, $user->name)->subject('Tienes un nuevo mensaje en Interacpedia');
+        //});
         return view( 'pages.success' );
     }
 
