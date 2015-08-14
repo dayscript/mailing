@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -28,17 +29,18 @@ class MailController extends Controller {
     {
         $subject = "La mejor opción para sus Regalos de Navidad";
 
-        $mail = env('CONTACT_MAIL');
-        $name = env('CONTACT_NAME');
-        $mail = "jco@dayscript.com";
-        Mail::queue( 'emails.navidad', [], function ( $message ) use ( $subject, $mail, $name ) {
-            $message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', "test");
-            $message->from( "postmaster@universosodexo.com", "Sodexo" )
-                ->subject( $subject )
-                ->to( $mail , $name );
-        } );
-        return view( 'pages.success' );
-
+        $contacts = Contact::where('navidad',0)->orderBy('identification', 'asc')->skip(0)->take(1)->get();
+        foreach ($contacts as $contact) {
+            Mail::queue( 'emails.navidad', [], function ( $message ) use ( $subject, $contact ) {
+                $message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', "test");
+                $message->from( "postmaster@universosodexo.com", "Sodexo" )
+                    ->subject( $subject )
+                    ->to( $contact->email , $contact->name );
+            } );
+            $contact->navidad = true;
+            $contact->save();
+        }
+        return view( 'pages.success', compact('contacts') );
     }
 
     public function send( Request $request )

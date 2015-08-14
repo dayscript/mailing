@@ -8,6 +8,9 @@
                     <div class="panel-heading"><h3 class="panel-title">Listo!!!</h3></div>
                     <div class="panel-body">
                         <h4>Campaña enviada.</h4>
+                        @foreach($contacts as $contact)
+                            <div>{{ $contact->email }}</div>
+                        @endforeach
                     </div>
                     <div class="panel-footer">
                         <a href="{{ route('contact') }}" class="btn btn-primary btn-xs">Volver</a>
