@@ -32,7 +32,7 @@ class MailController extends Controller {
         $contacts = Contact::where('navidad',0)->orderBy('identification', 'asc')->skip(0)->take(1)->get();
         foreach ($contacts as $contact) {
             Mail::queue( 'emails.navidad', [], function ( $message ) use ( $subject, $contact ) {
-                $message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', "test");
+                $message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', "navidad");
                 $message->from( "postmaster@universosodexo.com", "Sodexo" )
                     ->subject( $subject )
                     ->to( $contact->email , $contact->name );
