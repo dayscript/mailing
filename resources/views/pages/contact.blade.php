@@ -12,7 +12,7 @@
                         {!! Form::open(['route' => 'send', 'method' => 'post']) !!}
                         <div class="form-group">
                             {!! Form::label('limit', 'Cantidad') !!}
-                            {!! Form::text('limit', null, ['class' => 'form-control' ]) !!}
+                            {!! Form::text('limit', 10, ['class' => 'form-control' ]) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::submit('Enviar', ['class' => 'btn btn-success ' ] ) !!}
