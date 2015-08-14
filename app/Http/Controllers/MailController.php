@@ -28,12 +28,14 @@ class MailController extends Controller {
     {
         $subject = "La mejor opción para sus Regalos de Navidad";
         $campaign = "fru92";
-        Mail::queue( 'emails.navidad', [], function ( $message ) use ( $subject, $campaign ) {
-            $message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', $campaign);
-            $message->from( "sodexomail@dayscript.com", "Sodexo" )
+
+        Mail::queue( 'emails.navidad', [], function ( $message ) use ( $subject ) {
+            $message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', "fru92");
+            $message->from( "mailing@mg.dayscript.com", "Sodexo" )
                 ->subject( $subject )
                 ->to( env('CONTACT_MAIL'), env('CONTACT_NAME') );
         } );
+        return view( 'pages.success' );
 
     }
 
