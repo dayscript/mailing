@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'sodexomail@dayscript.com', 'name' => 'Sodexo'],
+    'from' => ['address' => 'postmaster@universosodexo.com', 'name' => 'Sodexo'],
 
     /*
     |--------------------------------------------------------------------------

@@ -15,7 +15,7 @@ return [
     */
 
     'mailgun' => [
-        'domain' => 'mg.dayscript.com',
+        'domain' => 'universosodexo.com',
         'secret' => 'key-01cf108307aad1969ab73ac25fca0b87',
     ],
 
