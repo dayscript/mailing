@@ -16,7 +16,9 @@ class Contact extends Model
         'position',
         'account',
         'identification',
-        'email'
+        'email',
+        'navidad',
+        'navidad2'
     ];
 
 }

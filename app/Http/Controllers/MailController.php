@@ -27,18 +27,18 @@ class MailController extends Controller {
      */
     public function navidad( Request $request )
     {
-        $subject = "La mejor opción para sus Regalos de Navidad";
+        $subject = "Su mejor opción para esta navidad: Sodexo";
 
         $limit = $request->get('limit',1);
         $contacts = Contact::where('navidad',0)->orderBy('identification', 'asc')->skip(0)->take($limit)->get();
         foreach ($contacts as $contact) {
-            Mail::queue( 'emails.navidad', [], function ( $message ) use ( $subject, $contact ) {
-                $message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', "navidad");
-                $message->from( "postmaster@universosodexo.com", "Sodexo" )
+            Mail::queue( 'emails.navidad2', [], function ( $message ) use ( $subject, $contact ) {
+                //$message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', "navidad");
+                $message->from( "laura.martinez@sodexo.com", "Sodexo" )
                     ->subject( $subject )
                     ->to( $contact->email , $contact->name );
             } );
-            $contact->navidad = true;
+            $contact->navidad2 = true;
             $contact->save();
         }
         return view( 'pages.success', compact('contacts') );
