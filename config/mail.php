@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'postmaster@universosodexo.com', 'name' => 'Sodexo'],
+    'from' => ['address' => 'laura.martinez@sodexo.com', 'name' => 'Sodexo'],
 
     /*
     |--------------------------------------------------------------------------
