@@ -19,12 +19,6 @@ class MailController extends Controller {
 
         foreach($events as $key=>$value){
             $event = Event::create($value);
-            //foreach($value as $key2=>$value2)
-            //{
-            //    Log::info( $key . "-Events Webhook: " . $key2 );
-            //}
-            //    $event = $events[$i];
-
         }
         return ["OK"];
     }
