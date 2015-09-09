@@ -39,9 +39,9 @@ class MailController extends Controller {
      */
     public function navidad( Request $request )
     {
-        $subject = "Su mejor opción para esta navidad: Sodexo";
+        $subject = "Su mejor opción para esta NAVIDAD: Sodexo";
 
-        $limit = $request->get('limit',1);
+        $limit = $request->get('limit',10);
         $contacts = Contact::where('name','test')->where('navidad',0)->where('navidad2',0)->orderBy('identification', 'asc')->skip(0)->take($limit)->get();
         foreach ($contacts as $contact) {
             Mail::queue( 'emails.navidad2', [], function ( $message ) use ( $subject, $contact ) {
