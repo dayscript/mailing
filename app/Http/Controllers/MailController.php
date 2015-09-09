@@ -18,7 +18,8 @@ class MailController extends Controller {
         $events = $request->all();
 
         foreach($events as $key=>$value){
-            Log::info("Events Webhook:".$value);
+            foreach($value as $key2=>$value2){
+            Log::info($key . "-Events Webhook: ".$key2);
             //    $event = $events[$i];
         //    $event = Event::create($event);
         }
