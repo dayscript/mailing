@@ -14,7 +14,10 @@ class MailController extends Controller {
 
     public function webhook( Request $request )
     {
-        $event = Event::create($request->all());
+        $events = $request->get('json');
+        foreach($events as $event){
+            $event = Event::create($event);
+        }
         return $event;
     }
 
