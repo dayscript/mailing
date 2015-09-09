@@ -16,11 +16,12 @@ class MailController extends Controller {
     public function webhook( Request $request )
     {
         $events = $request->all();
-        Log::info("Events Webhook:".$events);
-        //for($i=0; $i<count($events); $i++){
-        //    $event = $events[$i];
+
+        foreach($events as $key=>$value){
+            Log::info("Events Webhook:"$key);
+            //    $event = $events[$i];
         //    $event = Event::create($event);
-        //}
+        }
         return [];
     }
 
