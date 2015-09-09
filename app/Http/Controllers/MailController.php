@@ -21,7 +21,7 @@ class MailController extends Controller {
         //    $event = $events[$i];
         //    $event = Event::create($event);
         //}
-        return true;
+        return [];
     }
 
     /**
