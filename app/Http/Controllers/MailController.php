@@ -16,7 +16,7 @@ class MailController extends Controller {
     public function webhook( Request $request )
     {
         $events = $request->all();
-        Log::info("Events Webhook");
+        Log::info("Events Webhook:".$events);
         //for($i=0; $i<count($events); $i++){
         //    $event = $events[$i];
         //    $event = Event::create($event);
