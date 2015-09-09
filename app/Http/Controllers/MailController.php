@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller {
@@ -15,10 +16,11 @@ class MailController extends Controller {
     public function webhook( Request $request )
     {
         $events = $request->all();
-        for($i=0; $i<count($events); $i++){
-            $event = $events[$i];
-            $event = Event::create($event);
-        }
+        Log::info("Events Webhook");
+        //for($i=0; $i<count($events); $i++){
+        //    $event = $events[$i];
+        //    $event = Event::create($event);
+        //}
         return true;
     }
 
