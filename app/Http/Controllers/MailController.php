@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\Event;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -10,6 +11,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller {
+
+    public function webhook( Request $request )
+    {
+        $event = Event::create($request->all());
+        return $event;
+    }
 
     /**
      * Display a listing of the resource.
