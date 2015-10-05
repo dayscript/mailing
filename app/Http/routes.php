@@ -18,5 +18,5 @@ Route::get('/', [
 ]);
 
 Route::any('webhook', ['as' => 'webhook', 'uses' => 'MailController@webhook'] );
-Route::post('send', ['as' => 'navidad3', 'uses' => 'MailController@navidad3'] );
+Route::post('send', ['as' => 'navidad', 'uses' => 'MailController@navidad3'] );
 Route::get('contact', ['as' => 'contact', 'uses' => 'MailController@index'] );
