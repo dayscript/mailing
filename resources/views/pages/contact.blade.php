@@ -9,7 +9,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><h3 class="panel-title">Enviar campaña</h3></div>
                     <div class="panel-body">
-                        {!! Form::open(['route' => 'send', 'method' => 'post']) !!}
+                        {!! Form::open(['route' => 'navidad3', 'method' => 'post']) !!}
                         <div class="form-group">
                             {!! Form::label('limit', 'Cantidad') !!}
                             {!! Form::text('limit', 10, ['class' => 'form-control' ]) !!}
