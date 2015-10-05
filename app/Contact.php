@@ -18,7 +18,8 @@ class Contact extends Model
         'identification',
         'email',
         'navidad',
-        'navidad2'
+        'navidad2',
+        'navidad3'
     ];
 
 }
