@@ -61,8 +61,8 @@ class MailController extends Controller {
         $subject = "En esta Navidad, regale a sus colaboradores algo que realmente van a aprovechar";
 
         $limit = $request->get('limit',10);
-//        $contacts = Contact::where('navidad',0)->where('navidad2',0)->where('navidad3',0)->orderBy('identification', 'asc')->skip(0)->take($limit)->get();
-        $contacts = Contact::where('id',32625)->orderBy('identification', 'asc')->skip(0)->take($limit)->get();
+        $contacts = Contact::where('navidad',0)->where('navidad2',0)->where('navidad3',0)->orderBy('identification', 'asc')->skip(0)->take($limit)->get();
+//        $contacts = Contact::where('id',32625)->orderBy('identification', 'asc')->skip(0)->take($limit)->get();
         foreach ($contacts as $contact) {
             Mail::queue( 'emails.navidad3', [], function ( $message ) use ( $subject, $contact ) {
                 //$message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', "navidad");
