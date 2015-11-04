@@ -106,7 +106,7 @@ class MailController extends Controller {
     public function send( Request $request )
     {
         $data = $request->all();
-        Mail::queue( 'emails.navidad', $data, function ( $message ) use ( $data ) {
+        Mail::queue( 'emails.navidad4', $data, function ( $message ) use ( $data ) {
             $message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', 'fru92');
             $message->from( $data['email'] )
                 ->subject( $data['subject'] )
