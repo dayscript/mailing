@@ -75,6 +75,32 @@ class MailController extends Controller {
         }
         return view( 'pages.success', compact('contacts') );
     }
+    public function navidad4( Request $request )
+    {
+        $subject = "Regalar Sodexo Navidad: un regalos, muchas ventajas";
+
+        $limit = $request->get('limit',20);
+        $contacts = Contact::where('navidad',0)
+            ->where('navidad2',0)
+            ->where('navidad3',0)
+            ->where('navidad4',0)
+            ->orderBy('identification', 'asc')
+            ->skip(0)
+            ->take($limit)
+            ->get();
+//        $contacts = Contact::where('id',32625)->orderBy('identification', 'asc')->skip(0)->take($limit)->get();
+        foreach ($contacts as $contact) {
+            Mail::queue( 'emails.navidad4', [], function ( $message ) use ( $subject, $contact ) {
+                //$message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', "navidad");
+                $message->from( "laura.martinez@sodexo.com", "Sodexo" )
+                    ->subject( $subject )
+                    ->to( $contact->email , $contact->name );
+            } );
+            $contact->navidad4 = true;
+            $contact->save();
+        }
+        return view( 'pages.success', compact('contacts') );
+    }
 
 
     public function send( Request $request )
