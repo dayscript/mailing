@@ -77,7 +77,7 @@ class MailController extends Controller {
     }
     public function navidad4( Request $request )
     {
-        $subject = "Regalar Sodexo Navidad: un regalos, muchas ventajas";
+        $subject = "Regale Sodexo Navidad: un regalos, muchas ventajas";
 
         $limit = $request->get('limit',20);
         $contacts = Contact::where('navidad',0)
