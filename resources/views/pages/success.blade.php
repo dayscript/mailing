@@ -8,6 +8,7 @@
                     <div class="panel-heading"><h3 class="panel-title">Listo!!!</h3></div>
                     <div class="panel-body">
                         <h4>Campaña enviada.</h4>
+                        <div>Contactos: {{$total}}</div>
                         @foreach($contacts as $contact)
                             <div>{{ $contact->email }}</div>
                         @endforeach

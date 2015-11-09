@@ -80,6 +80,11 @@ class MailController extends Controller {
         $subject = "Regale Sodexo Navidad: un regalo, muchas ventajas";
 
         $limit = $request->get('limit',20);
+        $total = Contact::where('navidad',0)
+            ->where('navidad2',0)
+            ->where('navidad3',0)
+            ->where('navidad4',0)
+            ->orderBy('identification', 'asc')->count();
         $contacts = Contact::where('navidad',0)
             ->where('navidad2',0)
             ->where('navidad3',0)
@@ -99,7 +104,7 @@ class MailController extends Controller {
             $contact->navidad4 = true;
             $contact->save();
         }
-        return view( 'pages.success', compact('contacts') );
+        return view( 'pages.success', compact('contacts','total') );
     }
 
 
