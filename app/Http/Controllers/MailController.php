@@ -108,8 +108,8 @@ class MailController extends Controller {
         $subject = "Recuerde que el 20 de diciembre es la última entrega de dotación del año";
 
         $limit = $request->get('limit',20);
-        $total = Contact::where('planeacion',1)->where('dotacion1',0)->count()-$limit;
-        $contacts = Contact::where('planeacion',1)
+        $total = Contact::where('bd_dotacion',1)->where('dotacion1',0)->count()-$limit;
+        $contacts = Contact::where('bd_dotacion',1)
             ->where('dotacion1',0)
             ->orderBy('identification', 'asc')
             ->skip(0)
