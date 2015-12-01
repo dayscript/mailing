@@ -26,4 +26,10 @@ class Contact extends Model
         'dotacion1'
     ];
 
+    public function lastEvent()
+    {
+        $event = Event::where('email',$this->email)->limit(1);
+        return $event;
+    }
+
 }
