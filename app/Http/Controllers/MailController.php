@@ -27,6 +27,7 @@ class MailController extends Controller {
     {
         $events = Event::where('event','spamreport')->get();
         $events = Event::where('event','unsubscribe')->get();
+        $events = Event::where('event','dropped')->get();
         foreach($events as $event){
             $contact = Contact::firstOrNew(['email'=>$event->email]);
             if($contact->id){
