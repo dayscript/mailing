@@ -34,7 +34,7 @@ class MailController extends Controller {
             ->orderBy('events.created_at','desc')
 //            ->limit(10)
             ->get();
-        dd($contacts);
+//        dd($contacts);
 
         return view('reports.dotacion',compact('contacts'));
     }

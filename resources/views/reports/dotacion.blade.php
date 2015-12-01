@@ -15,8 +15,8 @@
             @foreach($contacts as $contact)
                 <tr>
                     <td>{{ $count }}</td>
-                    <td>{{ $contact->email }}</td>
-                    <td>{{ $contact->lastEvent()[0]->event }}</td>
+                    <td>{{ $contact['email'] }}</td>
+                    <td>{{ $contact['event'] }}</td>
                 </tr>
                 <?php $count++;?>
             @endforeach
