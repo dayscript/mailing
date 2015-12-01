@@ -27,7 +27,6 @@ class MailController extends Controller {
     {
         $contacts = Contact::where('dotacion1',1);
 
-        dd($contacts);
         return view('reports.dotacion',compact('contacts'));
     }
     public function clean()
