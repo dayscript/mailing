@@ -2,12 +2,26 @@
 
 @section('content')
     <div class="container">
-        @foreach($contacts as $contact)
-            <div class="row">
-                <div class="col-md-12">
-                    {{ $contact->email }}
-                </div>
-            </div>
-        @endforeach
+        <table class="table table-bordered table-stripped">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Email</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php $count = 1;?>
+            @foreach($contacts as $contact)
+                <tr>
+                    <td>{{ $count }}</td>
+                    <td>{{ $contact->email }}</td>
+                    <td></td>
+                </tr>
+                <?php $count++;?>
+            @endforeach
+            </tbody>
+        </table>
+
     </div>
 @endsection
