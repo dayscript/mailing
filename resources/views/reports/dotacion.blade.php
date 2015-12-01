@@ -16,7 +16,7 @@
                 <tr>
                     <td>{{ $count }}</td>
                     <td>{{ $contact->email }}</td>
-                    <td>{{ $contact->lastEvent() }}</td>
+                    <td><?php print_r($contact->lastEvent()) ?></td>
                 </tr>
                 <?php $count++;?>
             @endforeach
