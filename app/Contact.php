@@ -28,7 +28,7 @@ class Contact extends Model
 
     public function lastEvent()
     {
-        $event = Event::where('email',$this->email)->limit(1);
+        $event = Event::where('email',$this->email)->limit(1)->get();
         return $event;
     }
 
