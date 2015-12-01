@@ -23,6 +23,11 @@ class MailController extends Controller {
         return ["OK"];
     }
 
+    public function report()
+    {
+        $contacts = Contact::where('bd_dotacion',1);
+        return view('reports.dotacion',compact('contacts'));
+    }
     public function clean()
     {
         $events = Event::where('event','spamreport')

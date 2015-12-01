@@ -23,3 +23,4 @@ Route::post('navidad', ['as' => 'navidad', 'uses' => 'MailController@navidad4'] 
 Route::post('dotacion', ['as' => 'dotacion', 'uses' => 'MailController@dotacion'] );
 Route::get('contact', ['as' => 'contact', 'uses' => 'MailController@index'] );
 Route::get('clean', ['as' => 'clean', 'uses' => 'MailController@clean'] );
+Route::get('report', ['as' => 'report', 'uses' => 'MailController@report'] );
