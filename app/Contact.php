@@ -29,6 +29,7 @@ class Contact extends Model
     public function lastEvent()
     {
         $event = Event::where('email',$this->email)->limit(1);
+        dd($event);
         return $event;
     }
 
