@@ -23,6 +23,11 @@ class MailController extends Controller {
         return ["OK"];
     }
 
+    public function clean()
+    {
+        $events = Event::where('event','spamreport')->get();
+        dd($events);
+    }
     /**
      * Display a listing of the resource.
      *
