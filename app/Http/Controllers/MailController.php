@@ -25,7 +25,14 @@ class MailController extends Controller {
 
     public function report()
     {
-        $contacts = Contact::where('dotacion1',1)->limit(10000)->get();
+//        $contacts = Contact::where('dotacion1',1)->limit(10000)->get();
+        $contacts = DB::table('contacts')
+            ->leftJoin('events', 'contacts.email', '=', 'events.email')
+            ->select('contacts.name', 'contacts.email')
+            ->where('contacts.dotacion1',1)
+            ->limit(10)
+            ->get();
+        dd($contacts);
 
         return view('reports.dotacion',compact('contacts'));
     }
