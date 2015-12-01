@@ -115,7 +115,7 @@ class MailController extends Controller {
             ->skip(0)
             ->take($limit)
             ->get();
-        $contacts = Contact::where('email','jcorrego@gmail.com')->orderBy('identification', 'asc')->skip(0)->take($limit)->get();
+//        $contacts = Contact::where('email','jcorrego@gmail.com')->orderBy('identification', 'asc')->skip(0)->take($limit)->get();
         foreach ($contacts as $contact) {
             Mail::queue( 'emails.dotacion1', [], function ( $message ) use ( $subject, $contact ) {
                 //$message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', "navidad");

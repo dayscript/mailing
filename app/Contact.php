@@ -19,7 +19,11 @@ class Contact extends Model
         'email',
         'navidad',
         'navidad2',
-        'navidad3'
+        'navidad3',
+        'navidad4',
+        'bd_dotacion',
+        'bd_navidad',
+        'dotacion1'
     ];
 
 }
