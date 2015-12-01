@@ -9,7 +9,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><h3 class="panel-title">Enviar campaña Navidad</h3></div>
                     <div class="panel-body">
-                        {!! Form::open(['route' => 'navidad', 'method' => 'post']) !!}
+                        {!! Form::open(['route' => 'dotacion', 'method' => 'post']) !!}
                         <div class="form-group">
                             {!! Form::label('limit', 'Cantidad') !!}
                             {!! Form::text('limit', 20, ['class' => 'form-control' ]) !!}
