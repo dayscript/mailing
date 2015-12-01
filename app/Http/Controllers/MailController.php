@@ -103,6 +103,32 @@ class MailController extends Controller {
         return view( 'pages.success', compact('contacts','total') );
     }
 
+    public function dotacion( Request $request )
+    {
+        $subject = "Recuerde que el 20 de diciembre es la última entrega de dotación del año";
+
+        $limit = $request->get('limit',20);
+        $total = Contact::where('planeacion',1)->where('dotacion1',0)->count()-$limit;
+        $contacts = Contact::where('planeacion',1)
+            ->where('dotacion1',0)
+            ->orderBy('identification', 'asc')
+            ->skip(0)
+            ->take($limit)
+            ->get();
+        $contacts = Contact::where('email','jcorrego@gmail.com')->orderBy('identification', 'asc')->skip(0)->take($limit)->get();
+        foreach ($contacts as $contact) {
+            Mail::queue( 'emails.dotacion1', [], function ( $message ) use ( $subject, $contact ) {
+                //$message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', "navidad");
+                $message->from( "laura.martinez@sodexo.com", "Sodexo" )
+                    ->subject( $subject )
+                    ->to( $contact->email , $contact->name );
+            } );
+            $contact->dotacion1 = true;
+            $contact->save();
+        }
+        return view( 'pages.success', compact('contacts','total') );
+    }
+
 
     public function send( Request $request )
     {
