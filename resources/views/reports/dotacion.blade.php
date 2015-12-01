@@ -6,6 +6,7 @@
             <thead>
             <tr>
                 <th>No.</th>
+                <th>Account</th>
                 <th>Email</th>
                 <th>Status</th>
             </tr>
@@ -15,6 +16,7 @@
             @foreach($contacts as $contact)
                 <tr>
                     <td>{{ $count }}</td>
+                    <td>{{ $contact->account }}</td>
                     <td>{{ $contact->email }}</td>
                     <td>{{ $contact->event }}</td>
                 </tr>

@@ -29,7 +29,7 @@ class MailController extends Controller {
 //        $contacts = Contact::where('dotacion1',1)->limit(10000)->get();
         $contacts = DB::table('contacts')
             ->leftJoin('events', 'contacts.email', '=', 'events.email')
-            ->select('contacts.name', 'contacts.email','events.event','events.created_at')
+            ->select('contacts.account','contacts.name', 'contacts.email','events.event','events.created_at')
             ->where('contacts.dotacion1',1)
             ->orderBy('events.created_at','desc')
 //            ->limit(10)
