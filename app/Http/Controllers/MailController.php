@@ -26,7 +26,9 @@ class MailController extends Controller {
     public function clean()
     {
         $events = Event::where('event','spamreport')->get();
-        dd($events);
+        foreach($events as $event){
+            echo $event->email;
+        }
     }
     /**
      * Display a listing of the resource.
