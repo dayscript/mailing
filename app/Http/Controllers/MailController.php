@@ -31,7 +31,7 @@ class MailController extends Controller {
             ->leftJoin('events', 'contacts.email', '=', 'events.email')
             ->select('contacts.name', 'contacts.email','events.event','events.created_at')
             ->where('contacts.dotacion1',1)
-            ->orderBy('events.created_at','desc')
+//            ->orderBy('events.created_at','desc')
             ->limit(10)
             ->get();
         dd($contacts);
