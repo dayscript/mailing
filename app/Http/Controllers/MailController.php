@@ -34,7 +34,7 @@ class MailController extends Controller {
                 $contact->delete();
             }
         }
-        return $events;
+        return $events->count();
     }
     /**
      * Display a listing of the resource.
