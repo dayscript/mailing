@@ -177,7 +177,7 @@ class MailController extends Controller {
                     ->subject( $subject )
                     ->to( $contact->email , $contact->name );
             } );
-            $contact->dotacion1 = true;
+            $contact->navidadcontador23 = true;
             $contact->save();
         }
         return view( 'pages.success', compact('contacts','total') );
