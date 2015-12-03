@@ -157,6 +157,31 @@ class MailController extends Controller {
         }
         return view( 'pages.success', compact('contacts','total') );
     }
+    public function navidadcontador23( Request $request )
+    {
+        $subject = "Llegó Diciembre, no espere más";
+
+        $limit = $request->get('limit',20);
+        $total = Contact::where('bd_navidad',1)->where('navidadcontador23',0)->count()-$limit;
+        $contacts = Contact::where('bd_navidad',1)
+            ->where('navidadcontador23',0)
+            ->orderBy('identification', 'asc')
+            ->skip(0)
+            ->take($limit)
+            ->get();
+//        $contacts = Contact::where('email','jcorrego@gmail.com')->orderBy('identification', 'asc')->skip(0)->take($limit)->get();
+        foreach ($contacts as $contact) {
+            Mail::queue( 'emails.navidadcontador23', [], function ( $message ) use ( $subject, $contact ) {
+                //$message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', "navidad");
+                $message->from( "laura.martinez@sodexo.com", "Sodexo" )
+                    ->subject( $subject )
+                    ->to( $contact->email , $contact->name );
+            } );
+            $contact->dotacion1 = true;
+            $contact->save();
+        }
+        return view( 'pages.success', compact('contacts','total') );
+    }
 
 
     public function send( Request $request )
@@ -175,69 +200,4 @@ class MailController extends Controller {
         return view( 'pages.success' );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request $request
-     * @return Response
-     */
-    public function store( Request $request )
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function show( $id )
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function edit( $id )
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request $request
-     * @param  int $id
-     * @return Response
-     */
-    public function update( Request $request, $id )
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function destroy( $id )
-    {
-        //
-    }
 }

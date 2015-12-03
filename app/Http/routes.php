@@ -20,6 +20,7 @@ Route::get('/', [
 
 Route::any('webhook', ['as' => 'webhook', 'uses' => 'MailController@webhook'] );
 Route::post('navidad', ['as' => 'navidad', 'uses' => 'MailController@navidad4'] );
+Route::post('navidadcontador23', ['as' => 'navidadcontador23', 'uses' => 'MailController@navidadcontador23'] );
 Route::post('dotacion', ['as' => 'dotacion', 'uses' => 'MailController@dotacion'] );
 Route::get('contact', ['as' => 'contact', 'uses' => 'MailController@index'] );
 Route::get('clean', ['as' => 'clean', 'uses' => 'MailController@clean'] );
