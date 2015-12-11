@@ -30,7 +30,7 @@ class MailController extends Controller {
         $contacts = DB::table('contacts')
             ->leftJoin('events', 'contacts.email', '=', 'events.email')
             ->select('contacts.email', 'contacts.account','contacts.name','events.event','events.created_at')
-            ->where('contacts.bd_navidad',1)
+            ->where('contacts.bd_regalos',1)
             ->orderBy('events.created_at','desc')
 //            ->limit(10)
                 ->groupBy('contacts.email')
