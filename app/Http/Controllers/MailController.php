@@ -209,6 +209,31 @@ class MailController extends Controller {
         }
         return view( 'pages.success', compact('contacts','total') );
     }
+    public function navidad10dias( Request $request )
+    {
+        $subject = "Que no le coja la noche";
+
+        $limit = $request->get('limit',20);
+        $total = Contact::where('bd_navidad',1)->where('navidad10dias',0)->count()-$limit;
+        $contacts = Contact::where('bd_navidad',1)
+            ->where('navidad10dias',0)
+            ->orderBy('identification', 'asc')
+            ->skip(0)
+            ->take($limit)
+            ->get();
+//        $contacts = Contact::where('email','jcorrego@gmail.com')->orderBy('identification', 'asc')->skip(0)->take($limit)->get();
+        foreach ($contacts as $contact) {
+            Mail::queue( 'emails.navidad10dias', [], function ( $message ) use ( $subject, $contact ) {
+                //$message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', "navidad");
+                $message->from( "laura.martinez@sodexo.com", "Sodexo" )
+                    ->subject( $subject )
+                    ->to( $contact->email , $contact->name );
+            } );
+            $contact->navidad10dias = true;
+            $contact->save();
+        }
+        return view( 'pages.success', compact('contacts','total') );
+    }
 
     public function regalosnavidad( Request $request )
     {
