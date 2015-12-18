@@ -240,10 +240,15 @@ class MailController extends Controller {
         $subject = "¿Dejó el regalo de Navidad hasta el final?";
 
         $limit = $request->get('limit',20);
-        $total = Contact::where('bd_navidad',1)->where('navidadfinal',0)->where('navidad10dias',0)->count()-$limit;
+        $total = Contact::where('bd_navidad',1)
+                ->where('navidadfinal',0)
+                ->where('navidad10dias',0)
+                ->where('navidad16dias',0)
+                ->count()-$limit;
         $contacts = Contact::where('bd_navidad',1)
             ->where('navidadfinal',0)
             ->where('navidad10dias',0)
+            ->where('navidad16dias',0)
             ->orderBy('identification', 'asc')
             ->skip(0)
             ->take($limit)
