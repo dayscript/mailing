@@ -243,7 +243,7 @@ class MailController extends Controller {
         $total = Contact::where('bd_navidad',1)->where('navidadfinal',0)->count()-$limit;
         $contacts = Contact::where('bd_navidad',1)
             ->where('navidadfinal',0)
-            ->orderBy('identification', 'desc')
+            ->orderBy('identification', 'asc')
             ->skip(0)
             ->take($limit)
             ->get();
