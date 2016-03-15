@@ -304,7 +304,7 @@ class MailController extends Controller {
             ->skip(0)
             ->take($limit)
             ->get();
-        //        $contacts = Contact::where('email','jcorrego@gmail.com')->orderBy('identification', 'asc')->skip(0)->take($limit)->get();
+                $contacts = Contact::where('email','jcorrego@gmail.com')->orderBy('identification', 'asc')->skip(0)->take($limit)->get();
         foreach ($contacts as $contact) {
             Mail::queue( 'emails.soydt2016', [], function ( $message ) use ( $subject, $contact ) {
                 //$message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', "navidad");
@@ -312,7 +312,7 @@ class MailController extends Controller {
                     ->subject( $subject )
                     ->to( $contact->email , $contact->name );
             } );
-            $contact->regalosnavidad = true;
+            $contact->soydt2016 = true;
             $contact->save();
         }
         return view( 'pages.success', compact('contacts','total') );
