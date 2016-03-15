@@ -292,6 +292,32 @@ class MailController extends Controller {
         return view( 'pages.success', compact('contacts','total') );
     }
 
+    public function soydt2016( Request $request )
+    {
+        $subject = "Nueva temporada SoyDT 2016!";
+
+        $limit = $request->get('limit',20);
+        $total = Contact::where('bd_soydt',1)->where('soydt2016',0)->count()-$limit;
+        $contacts = Contact::where('bd_soydt',1)
+            ->where('soydt2016',0)
+            ->orderBy('identification', 'desc')
+            ->skip(0)
+            ->take($limit)
+            ->get();
+        //        $contacts = Contact::where('email','jcorrego@gmail.com')->orderBy('identification', 'asc')->skip(0)->take($limit)->get();
+        foreach ($contacts as $contact) {
+            Mail::queue( 'emails.soydt2016', [], function ( $message ) use ( $subject, $contact ) {
+                //$message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', "navidad");
+                $message->from( "info@soydt.co", "SoyDT" )
+                    ->subject( $subject )
+                    ->to( $contact->email , $contact->name );
+            } );
+            $contact->regalosnavidad = true;
+            $contact->save();
+        }
+        return view( 'pages.success', compact('contacts','total') );
+    }
+
 
     public function send( Request $request )
     {

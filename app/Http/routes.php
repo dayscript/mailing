@@ -25,6 +25,7 @@ Route::post('navidad16dias', ['as' => 'navidad16dias', 'uses' => 'MailController
 Route::post('navidad10dias', ['as' => 'navidad10dias', 'uses' => 'MailController@navidad10dias'] );
 Route::post('navidadfinal', ['as' => 'navidadfinal', 'uses' => 'MailController@navidadfinal'] );
 Route::post('regalosnavidad', ['as' => 'regalosnavidad', 'uses' => 'MailController@regalosnavidad'] );
+Route::post('soydt2016', ['as' => 'soydt2016', 'uses' => 'MailController@soydt2016'] );
 Route::post('dotacion', ['as' => 'dotacion', 'uses' => 'MailController@dotacion'] );
 Route::get('contact', ['as' => 'contact', 'uses' => 'MailController@index'] );
 Route::get('clean', ['as' => 'clean', 'uses' => 'MailController@clean'] );

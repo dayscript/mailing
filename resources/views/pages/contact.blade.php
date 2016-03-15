@@ -7,9 +7,9 @@
         <div class="row">
             <div class="col col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h3 class="panel-title">Enviar campaña navidadfinal</h3></div>
+                    <div class="panel-heading"><h3 class="panel-title">Enviar campaña soydt2016</h3></div>
                     <div class="panel-body">
-                        {!! Form::open(['route' => 'navidadfinal', 'method' => 'post']) !!}
+                        {!! Form::open(['route' => 'soydt2016', 'method' => 'post']) !!}
                         <div class="form-group">
                             {!! Form::label('limit', 'Cantidad') !!}
                             {!! Form::text('limit', 50, ['class' => 'form-control' ]) !!}
