@@ -20,4 +20,17 @@
             </div>
         </div>
     </div>
+    @if(Request::get('refresh',''))
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>
+        var timeoutId;
+        $( document ).ready(function() {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(function () {
+                document.location.reload();
+            }, 5000);
+        });
+
+    </script>
+    @endif
 @endsection

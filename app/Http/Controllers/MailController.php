@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -306,14 +307,18 @@ class MailController extends Controller {
             ->get();
 //                $contacts = Contact::where('email','jcorrego@gmail.com')->orderBy('identification', 'asc')->skip(0)->take($limit)->get();
         foreach ($contacts as $contact) {
-            Mail::queue( 'emails.soydt2016', [], function ( $message ) use ( $subject, $contact ) {
-                //$message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', "navidad");
-                $message->from( "info@soydt.co", "SoyDT" )
-                    ->subject( $subject )
-                    ->to( $contact->email , $contact->name );
-            } );
-            $contact->soydt2016 = true;
-            $contact->save();
+            if (App::environment('local')) {
+                // The environment is local
+            } else {
+                Mail::queue( 'emails.soydt2016', [], function ( $message ) use ( $subject, $contact ) {
+                    //$message->getHeaders()->addTextHeader('X-Mailgun-Campaign-Id', "navidad");
+                    $message->from( "info@soydt.co", "SoyDT" )
+                        ->subject( $subject )
+                        ->to( $contact->email , $contact->name );
+                } );
+                $contact->soydt2016 = true;
+                $contact->save();
+            }
         }
         return view( 'pages.success', compact('contacts','total') );
     }
