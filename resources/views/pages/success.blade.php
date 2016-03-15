@@ -28,7 +28,7 @@
             clearTimeout(timeoutId);
             timeoutId = setTimeout(function () {
                 document.location.reload();
-            }, 5000);
+            }, 2000);
         });
 
     </script>
