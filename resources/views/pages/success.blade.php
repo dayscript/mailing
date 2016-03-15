@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-    @if(Request::get('refresh',''))
+    @if(Request::get('refresh','') && $total>0)
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script>
         var timeoutId;
