@@ -298,8 +298,9 @@ class MailController extends Controller {
         $subject = "Nueva temporada SoyDT 2016!";
 
         $limit = $request->get('limit',50);
-        $total = Contact::where('bd_soydt',1)->where('soydt2016',0)->count()-$limit;
-        $contacts = Contact::where('bd_soydt',1)
+        $total = Contact::where('bd_futbol',1)
+                ->where('soydt2016',0)->count()-$limit;
+        $contacts = Contact::where('bd_futbol',1)
             ->where('soydt2016',0)
             ->orderBy('identification', 'desc')
             ->skip(0)
