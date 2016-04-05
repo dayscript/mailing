@@ -47,6 +47,7 @@ class MailController extends Controller {
             ->orWhere('event','unsubscribe')
             ->orWhere('event','dropped')
             ->orWhere('event','bounce')->get();
+        dd($events->count());
         foreach($events as $event){
             $contact = Contact::firstOrNew(['email'=>$event->email]);
             if($contact->id){
