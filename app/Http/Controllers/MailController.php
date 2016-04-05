@@ -41,12 +41,17 @@ class MailController extends Controller {
 
         return view('reports.dotacion',compact('contacts'));
     }
-    public function clean()
+    public function clean(Request $request)
     {
+        $skip = $request->get('skip',0);
+        $take = $request->get('take',1000);
         $events = Event::where('event','spamreport')
             ->orWhere('event','unsubscribe')
             ->orWhere('event','dropped')
-            ->orWhere('event','bounce')->get();
+            ->orWhere('event','bounce')
+            ->skip($skip)
+            ->take($take)
+            ->get();
         dd($events->count());
         foreach($events as $event){
             $contact = Contact::firstOrNew(['email'=>$event->email]);
