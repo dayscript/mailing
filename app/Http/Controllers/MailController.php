@@ -63,7 +63,7 @@ class MailController extends Controller {
             }
             echo "<br>";
         }
-        return "Eliminados: ".$deleted;
+        echo "<br>Eliminados: ".$deleted;
     }
     /**
      * Display a listing of the resource.
