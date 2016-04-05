@@ -55,7 +55,7 @@ class MailController extends Controller {
         foreach($events as $event){
             $contact = Contact::firstOrNew(['email'=>$event->email]);
             echo $contact->email;
-            if($contact->id){
+            if($contact->id && !$contact->trashed()){
                 $contact->delete();
                 echo " - <span class='text-danger'>deleted</span>";
             }
