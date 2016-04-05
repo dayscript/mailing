@@ -52,16 +52,18 @@ class MailController extends Controller {
             ->skip($skip)
             ->take($take)
             ->get();
+        $deleted = 0;
         foreach($events as $event){
             $contact = Contact::firstOrNew(['email'=>$event->email]);
             echo $contact->email;
             if($contact->id && !$contact->trashed()){
                 $contact->delete();
                 echo " - <span class='text-danger'>deleted</span>";
+                $deleted++;
             }
             echo "<br>";
         }
-        return $events->count();
+        return "Eliminados: ".$deleted;
     }
     /**
      * Display a listing of the resource.
