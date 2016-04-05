@@ -52,12 +52,14 @@ class MailController extends Controller {
             ->skip($skip)
             ->take($take)
             ->get();
-        dd($events->count());
         foreach($events as $event){
             $contact = Contact::firstOrNew(['email'=>$event->email]);
+            echo $contact->email;
             if($contact->id){
                 $contact->delete();
+                echo " - <span class='text-danger'>deleted</span>";
             }
+            echo "<br>";
         }
         return $events->count();
     }
